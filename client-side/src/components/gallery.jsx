@@ -1,6 +1,3 @@
-//This component will handle the main logic for my image gallery, including the grid layout, reordering functionality, and deleting multiple images.
-
-// src/components/Gallery.js
 import React, { useState } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -10,12 +7,18 @@ import './gallery.css'
 import ImageFilter from './imageFilter'
 
 function Gallery({ images }) {
+  // State to manage the images in the gallery
   const [galleryImages, setGalleryImages] = useState(images)
+  // State to manage the selected images for deletion
   const [selectedImages, setSelectedImages] = useState([])
+  // State to manage the deleted images
   const [deletedImages, setDeletedImages] = useState([])
+  // State to manage the visibility of the modal
   const [showModal, setShowModal] = useState(false)
+  // State to manage the selected deleted images for restoration
   const [selectedDeletedImages, setSelectedDeletedImages] = useState([])
 
+  // Function to handle the reordering of images
   const moveImage = (dragIndex, hoverIndex) => {
     const draggedImage = galleryImages[dragIndex]
     const newImages = [...galleryImages]
@@ -24,6 +27,7 @@ function Gallery({ images }) {
     setGalleryImages(newImages)
   }
 
+  // Function to handle the selection and deselection of images
   const handleSelect = (id, isSelected) => {
     if (isSelected) {
       setSelectedImages([...selectedImages, id])
@@ -34,6 +38,7 @@ function Gallery({ images }) {
     }
   }
 
+  // Function to handle the deletion of selected images
   const handleDelete = () => {
     const newImages = galleryImages.filter(
       (image) => !selectedImages.includes(image.id)
@@ -46,6 +51,7 @@ function Gallery({ images }) {
     setSelectedImages([])
   }
 
+  // Function to handle setting a feature image
   const handleSetFeature = (id) => {
     const newImages = [...galleryImages]
     const featureIndex = newImages.findIndex((image) => image.id === id)
@@ -54,10 +60,12 @@ function Gallery({ images }) {
     setGalleryImages(newImages)
   }
 
+  // Function to handle the click of the add button
   const handleAddButtonClick = () => {
     setShowModal(true)
   }
 
+  // Function to handle the selection and deselection of deleted images
   const handleDeletedImageSelect = (id, isSelected) => {
     if (isSelected) {
       setSelectedDeletedImages([...selectedDeletedImages, id])
@@ -68,6 +76,7 @@ function Gallery({ images }) {
     }
   }
 
+  // Function to handle the addition of selected deleted images back to the gallery
   const handleAddToGallery = () => {
     const newImages = [...galleryImages]
     selectedDeletedImages.forEach((id) => {
@@ -84,6 +93,7 @@ function Gallery({ images }) {
     setShowModal(false)
   }
 
+  // Function to handle the closing of the modal
   const handleCloseModal = (e) => {
     if (e.target.classList.contains('modal')) {
       setShowModal(false)
@@ -169,8 +179,4 @@ function Gallery({ images }) {
   )
 }
 
-
-export default Gallery;
-
-
-
+export default Gallery

@@ -1,10 +1,8 @@
-//This component will represent each image in the gallery. It will handle the logic for selecting an image, setting a feature image, and deleting an image.
-
-// src/components/imageCard.js
 import React, { useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import './imageCard.css'
 import ImageFilter from './imageFilter'
+import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
 
 const ItemType = 'image'
 
@@ -17,6 +15,7 @@ function ImageCard({
   onSelect,
   onSetFeature,
 }) {
+  // Use Drop to handle the drop of an image
   const [, ref] = useDrop({
     accept: ItemType,
     hover(item) {
@@ -27,6 +26,7 @@ function ImageCard({
     },
   })
 
+  // Use Drag to handle the drag of an image
   const [{ isDragging }, drag] = useDrag({
     type: ItemType,
     item: { id, index },
@@ -35,10 +35,13 @@ function ImageCard({
     }),
   })
 
+  // Set the opacity based on whether the image is being dragged
   const opacity = isDragging ? 0 : 1
 
+  // State to manage whether the image is selected
   const [selected, setSelected] = useState(false)
 
+  // Function to handle the selection and deselection of an image
   const handleSelect = () => {
     setSelected(!selected)
     onSelect(id, !selected)
@@ -53,8 +56,10 @@ function ImageCard({
       }`}
     >
       {isFeatured ? (
+        // If the image is featured, apply the filter
         <ImageFilter src={image.src} />
       ) : (
+        // If the image is not featured, display the image without filter
         <img ref={drag} src={image.src} alt='' className='image' />
       )}
       <input
@@ -64,6 +69,7 @@ function ImageCard({
         className={`checkbox ${selected ? 'selected' : ''}`}
       />
       {!isFeatured && (
+        // If the image is not featured, display the "Set as Feature" button
         <button onClick={() => onSetFeature(id)} className='feature-button'>
           Set as Feature
         </button>
@@ -73,7 +79,3 @@ function ImageCard({
 }
 
 export default ImageCard
-
-
-
-
