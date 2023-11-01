@@ -83,13 +83,11 @@ function Gallery({ images }) {
     setShowModal(false)
   }
 
- const handleCloseModal = (e) => {
-   if (e.target.classList.contains('modal')) {
-     setShowModal(false)
-   }
- }
-
-
+  const handleCloseModal = (e) => {
+    if (e.target.classList.contains('modal')) {
+      setShowModal(false)
+    }
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -129,10 +127,18 @@ function Gallery({ images }) {
         {showModal && (
           <div className='modal' onClick={handleCloseModal}>
             <div className='modal-content'>
-              <Alert status='success'>
-                <AlertIcon boxSize='40' marginRight='4' />
-                All images are in Display
-              </Alert>
+              <div className='all-images'>
+                <Alert status='success'>
+                  {deletedImages.length > 0 ? (
+                    'Showing deleted images'
+                  ) : (
+                    <>
+                      <AlertIcon boxSize='20' marginRight='10' />
+                      All images are on display
+                    </>
+                  )}
+                </Alert>
+              </div>
               <div className='deleted-images'>
                 {deletedImages.map((image) => (
                   <div key={image.id} className='deleted-image'>

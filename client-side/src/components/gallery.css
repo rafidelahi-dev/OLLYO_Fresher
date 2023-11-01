@@ -100,8 +100,11 @@ margin-top: 15px;
   background-color: #fff;
   padding: 20px;
   text-align: center;
-  height: 40px;
-  width: 250px;
   font-size: large;
   color: rgb(0, 77, 0);
+}
+
+.all-images{
+  height: 30px;
+  width: 270px;
 }
