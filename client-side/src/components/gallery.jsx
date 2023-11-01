@@ -122,7 +122,7 @@ function Gallery({ images }) {
             />
           ))}
           <button onClick={handleAddButtonClick} className='add-button'>
-            Retrive Deleted Images
+            Restore images
           </button>
         </div>
         {showModal && (
