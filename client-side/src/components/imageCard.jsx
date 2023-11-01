@@ -4,6 +4,7 @@
 import React, { useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import './imageCard.css'
+import ImageFilter from './imageFilter'
 
 const ItemType = 'image'
 
@@ -51,7 +52,11 @@ function ImageCard({
         selected ? 'selected' : ''
       }`}
     >
-      <img ref={drag} src={image.src} alt='' className='image' />
+      {isFeatured ? (
+        <ImageFilter src={image.src} />
+      ) : (
+        <img ref={drag} src={image.src} alt='' className='image' />
+      )}
       <input
         type='checkbox'
         checked={selected}
@@ -68,6 +73,7 @@ function ImageCard({
 }
 
 export default ImageCard
+
 
 
 

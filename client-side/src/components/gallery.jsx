@@ -7,6 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Alert, AlertIcon, Checkbox } from '@chakra-ui/react'
 import ImageCard from './imageCard'
 import './gallery.css'
+import ImageFilter from './imageFilter'
 
 function Gallery({ images }) {
   const [galleryImages, setGalleryImages] = useState(images)
@@ -121,7 +122,7 @@ function Gallery({ images }) {
             />
           ))}
           <button onClick={handleAddButtonClick} className='add-button'>
-            Add Images
+            Retrive Deleted Images
           </button>
         </div>
         {showModal && (
