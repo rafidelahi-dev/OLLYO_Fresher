@@ -12,7 +12,7 @@
 }
 
 .header {
- margin-top: 15px;
+ margin-top: 42px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,35 +27,54 @@
 }
 
 .border {
-  height: 2px;
-  background-color: #000;
+  height: 4px;
+  background-color: #03254E;
   margin-top: 8px;
 }
 
+
 .selected-count {
-margin-top: 15px;
+  display: flex;
   margin-left: 16px;
 }
 
 .delete-button {
- margin-top: 15px;
-  margin-right: 16px;
-  padding: 8px 16px;
+  margin-right: 10px;
+  padding: 4px 4px;
   font-size: 16px;
   cursor: pointer;
   color: red;
+  font-weight: bolder;
+  border: solid 2px rgb(212, 0, 0) ;
+}
+
+.delete-button:hover{
+    border: solid 3px rgb(236, 0, 0) ;
 }
 
 .deleted-images {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+}
+.each-deleted-images {
+
+  border-radius: 8px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  border: solid rgb(183, 180, 180) 1px;
+}
+
+.each-deleted-images:hover{
+  border: solid rgb(99, 99, 99) 1px;
 }
 
 .deleted-image {
   width: 150px;
   height: 150px;
   position: relative;
+  margin: 5px;
 }
 
 .deleted-image img {
@@ -75,6 +94,12 @@ margin-top: 15px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 5px;
+  border: solid rgb(151, 151, 151) .2px;
+}
+
+.add-to-gallery-button:hover{
+  border: solid rgb(1, 103, 255) 2px;
 }
 
 .add-button {
@@ -99,13 +124,20 @@ margin-top: 15px;
 
 .modal-content {
   background-color: #fff;
-  padding: 20px;
+
   text-align: center;
   font-size: large;
-  color: rgb(0, 77, 0);
 }
 
-.all-images{
-  height: 30px;
-  width: 270px;
+.all-images {
+  display: flex;
+  align-items: center;
+  height: 10px;
+  width: 250px;
+  margin: 20px;
+}
+.show-delete-images{
+margin: 10px;
+    height: 20px;
+  width: 100%;
 }
