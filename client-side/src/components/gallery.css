@@ -28,13 +28,13 @@
 
 .border {
   height: 4px;
-  background-color: #009cb5;
+  background-color: #03254E;
   margin-top: 8px;
 }
 
 
 .selected-count {
-
+  display: flex;
   margin-left: 16px;
 }
 
