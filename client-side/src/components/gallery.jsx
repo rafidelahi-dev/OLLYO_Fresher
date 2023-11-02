@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Alert, AlertIcon, Checkbox } from '@chakra-ui/react'
+import { Flex, Alert, AlertIcon, Checkbox } from '@chakra-ui/react'
 import ImageCard from './imageCard'
 import './gallery.css'
 import ImageFilter from './imageFilter'
@@ -17,6 +17,8 @@ function Gallery({ images }) {
   const [showModal, setShowModal] = useState(false)
   // State to manage the selected deleted images for restoration
   const [selectedDeletedImages, setSelectedDeletedImages] = useState([])
+  // To keep the bar vixed
+  const [isScrolled, setIsScrolled] = useState(false)
 
   // Function to handle the reordering of images
   const moveImage = (dragIndex, hoverIndex) => {
@@ -104,18 +106,35 @@ function Gallery({ images }) {
     <DndProvider backend={HTML5Backend}>
       <div className='gallery-container'>
         <div className='header'>
-          {selectedImages.length > 0 && (
-            <span className='selected-count'>
-              <Checkbox isChecked isReadOnly marginRight='2' />
-              {selectedImages.length} items have been selected
-            </span>
-          )}
-          <h1 className='title'>Image Gallery</h1>
-          {selectedImages.length > 0 && (
-            <button onClick={handleDelete} className='delete-button'>
-              Delete Selected Images
-            </button>
-          )}
+          <Flex
+            position='fixed'
+            maxWidth='100vw'
+            top='0'
+            left='0'
+            right='0'
+            alignItems='center'
+            justifyContent='space-between'
+            padding='1rem'
+            backgroundColor={isScrolled ? '#1eeacf' : '#1eeacfab'}
+            backdropFilter={isScrolled ? 'blur(10px)' : 'none'}
+            transition='background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out'
+            zIndex={100}
+          >
+            {selectedImages.length > 0 && (
+              <span className='selected-count'>
+                <Checkbox isChecked isReadOnly marginRight='2' />
+                {selectedImages.length} items have been selected
+              </span>
+            )}
+            <h1 className='title'>
+              <b>Image Gallery</b>
+            </h1>
+            {selectedImages.length > 0 && (
+              <button onClick={handleDelete} className='delete-button'>
+                Delete Selected Images
+              </button>
+            )}
+          </Flex>
         </div>
         <div className='border'></div>
         <div className='gallery'>
@@ -138,22 +157,26 @@ function Gallery({ images }) {
         {showModal && (
           <div className='modal' onClick={handleCloseModal}>
             <div className='modal-content'>
-              <div className='all-images'>
-                <Alert status='success'>
-                  {deletedImages.length > 0 ? (
-                    'Showing deleted images'
-                  ) : (
-                    <>
-                      <AlertIcon boxSize='20' marginRight='10' />
-                      All images are on display
-                    </>
-                  )}
-                </Alert>
-              </div>
+              <Alert status={deletedImages.length > 0 ? 'info' : 'success'}>
+                {deletedImages.length > 0 ? (
+                  <div className='show-delete-images'>
+                    Showing deleted images
+                  </div>
+                ) : (
+                  <div className='all-images'>
+                    <AlertIcon boxSize='8' marginRight='2' />
+                    All images are on display
+                  </div>
+                )}
+              </Alert>
               <div className='deleted-images'>
                 {deletedImages.map((image) => (
                   <div key={image.id} className='deleted-image'>
-                    <img src={image.src} alt='' />
+                    <img
+                      src={image.src}
+                      alt=''
+                      className='each-deleted-images'
+                    />
                     <input
                       type='checkbox'
                       onChange={(e) =>
