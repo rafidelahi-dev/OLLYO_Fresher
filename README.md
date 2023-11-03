@@ -10,7 +10,8 @@
  6. Live Demo  - Hosted the React JS image gallery on Vercel. - Live URL: [Link to your Vercel deployment] 
  - **Extra**
  7. Image Filters  - Allowed users to apply filters to images, such as grayscale, sepia, brightness, contrast, etc. - Filters can only be applied to the featured image. 
- 8. Restore Images - Deleted images can be restored with the restore images button. 
+ 8. Restore Images - Deleted images can be restored with the restore images button.
+ 9. Navbar & Mobile responsive - Users can always see the navbar on top when scrolling down, and in mobile view icons have been used instead of text for better understanding of functionality.
  ## Technologies Used
   - React JS 
   - React DnD (Drag and Drop) 
