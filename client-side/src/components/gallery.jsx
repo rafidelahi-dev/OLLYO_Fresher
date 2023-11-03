@@ -126,10 +126,11 @@ function Gallery({ images }) {
             alignItems='center'
             justifyContent='space-between'
             padding='1rem'
-            backgroundColor={isScrolled ? '#2DD881' : '#2DD881'}
+            backgroundColor= '#2DD881'
             backdropFilter={isScrolled ? 'blur(10px)' : 'none'}
             transition='background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out'
             zIndex={100}
+            borderBottom='4px #03254E solid'
           >
             {selectedImages.length > 0 && (
               <span className='selected-count'>
@@ -153,7 +154,6 @@ function Gallery({ images }) {
             )}
           </Flex>
         </div>
-        <div className='border'></div>
         <div className='gallery'>
           {galleryImages.map((image, index) => (
             <ImageCard
