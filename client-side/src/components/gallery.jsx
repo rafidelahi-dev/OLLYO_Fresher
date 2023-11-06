@@ -167,7 +167,7 @@ function Gallery({ images }) {
               onSetFeature={handleSetFeature}
             />
           ))}
-          <button onClick={handleRestoreButtonClick} className='add-button'>
+          <button onClick={handleRestoreButtonClick} className='restore-button'>
             Restore Images
           </button>
           <button className='add-button'>
