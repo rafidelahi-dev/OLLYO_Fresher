@@ -74,7 +74,7 @@ function Gallery({ images }) {
   }
 
   // Function to handle the click of the add button
-  const handleAddButtonClick = () => {
+  const handleRestoreButtonClick = () => {
     setShowModal(true)
   }
 
@@ -126,7 +126,7 @@ function Gallery({ images }) {
             alignItems='center'
             justifyContent='space-between'
             padding='1rem'
-            backgroundColor= '#2DD881'
+            backgroundColor='#2DD881'
             backdropFilter={isScrolled ? 'blur(10px)' : 'none'}
             transition='background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out'
             zIndex={100}
@@ -167,8 +167,11 @@ function Gallery({ images }) {
               onSetFeature={handleSetFeature}
             />
           ))}
-          <button onClick={handleAddButtonClick} className='add-button'>
+          <button onClick={handleRestoreButtonClick} className='add-button'>
             Restore Images
+          </button>
+          <button className='add-button'>
+            Add Images
           </button>
         </div>
         {showModal && (
